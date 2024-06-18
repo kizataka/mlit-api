@@ -41,8 +41,9 @@ response = requests.post(API_URL, json=payload, headers=headers)
 response.raise_for_status()
 data = response.json()
 
-# ソースコードのを指定
-source_code = "PORT28001010001"
+# ソースコードを指定
+# source_code = "PORT28001010001"
+source_code = input("ソースコードを入力してください:")
 
 # ソースコードが一致するデータの抽出
 for result in data["data"]["search"]["searchResults"]:
