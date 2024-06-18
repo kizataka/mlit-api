@@ -42,8 +42,9 @@ response.raise_for_status()
 data = response.json()
 
 # ソースコードを指定
-# source_code = "PORT28001010001"
+print(" ")
 source_code = input("ソースコードを入力してください:")
+print(" ")
 
 # ソースコードが一致するデータの抽出
 for result in data["data"]["search"]["searchResults"]:
@@ -51,13 +52,17 @@ for result in data["data"]["search"]["searchResults"]:
     if metadata.get("NGI:source_code") == source_code:
         latitude = metadata.get("NGI:latitude")
         longitude = metadata.get("NGI:longitude")
+        boring_elevation = metadata.get("NGI:boring_elevation")
         boring_length = metadata.get("NGI:boring_length")
         
         # 抽出した情報を表示
-        print(f"Title: {result['title']}")
-        print(f"Latitude: {latitude}")
-        print(f"Longitude: {longitude}")
-        print(f"Boring Length: {boring_length}")
+        print("*"*20, "検索結果", "*"*20)
+        print(f"タイトル: {result['title']}")
+        print(f"緯度: {latitude}")
+        print(f"経度: {longitude}")
+        print(f"孔口標高: {boring_elevation}")
+        print(f"総掘進長（ボーリング長）: {boring_length}")
+        print("*"*50)
         break
 else:
     print("指定されたソースコードに一致するデータが見つかりませんでした。")
